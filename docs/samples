@@ -1,0 +1,28 @@
+# Sample output
+Map(
+mpg1 -> List((mpg1,Sat Apr 01 11:05:27 EDT 2017,22.0), (mpg1,Sat Apr 01 11:05:28 EDT 2017,32.0), (mpg1,Sat Apr 01 11:05:29 EDT 2017,42.0)),
+mpg2 -> List((mpg2,Sat Apr 01 11:05:27 EDT 2017,23.0), (mpg2,Sat Apr 01 11:05:28 EDT 2017,33.0))
+)
+
+#Sample input
+
+val map = ch.interpolate("mpg1", List("mpg2"), "function", ds)
+
+
+
+val ds =  “function,  time, value”
+              mpg1,  12:02,  33.2
+              mpg2,  13:04, 44.4
+
+
+
+List((mpg1,Sat Apr 01 11:05:27 EDT 2017,22.0), (mpg1,Sat Apr 01 11:05:28 EDT 2017,32.0), (mpg1,Sat Apr 01 11:05:29 EDT 2017,42.0), (mpg2,Sat Apr 01 11:05:27 EDT 2017,23.0), (mpg2,Sat Apr 01 11:05:29 EDT 2017,33.0))
+
+
+
+function, time, value
+mpg1,Sat Apr 01 11:05:27 EDT 2017,22.0
+mpg1,Sat Apr 01 11:05:28 EDT 2017,32.0
+mpg1,Sat Apr 01 11:05:29 EDT 2017,42.0
+mpg2,Sat Apr 01 11:05:27 EDT 2017,23.0
+mpg2,Sat Apr 01 11:05:29 EDT 2017,33.0
