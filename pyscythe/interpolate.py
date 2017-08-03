@@ -42,6 +42,7 @@ def interpolate(signalName, list, columnName, dataFrame):
                 index = index + 1
 
         index = 0
+        #left,right specify may not be needed. Holding as comment for now
         #joinResult = df1.merge(df2, left_on=df1['time'], right_on=df2['time'], how='left')
         joinResult = df1.merge(df2, on='time', how='left')
         #interpolate values
