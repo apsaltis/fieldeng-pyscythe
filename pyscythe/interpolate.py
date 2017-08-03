@@ -10,19 +10,65 @@ def interpolate(signalName, list, columnName, dataFrame):
     dataFrame['time'] = pd.to_datetime(dataFrame['time'])
     df1 = pd.DataFrame()
     df2 = pd.DataFrame()
+    joinY = pd.DataFrame()
+    joinX = pd.DataFrame()
+    listX = []
+    listY = []
+    dictMap = {}
+    listAll = [df1, df2, joinY, joinX]
+
+
     index = 0
 
-    for i in dataFrame['function']:
-        if i == signalName:
-            df1 = df1.append(dataFrame.iloc[[index]])
-            index = index + 1
-        else:
-            df2 = df2.append(dataFrame.iloc[[index]])
+    if len(list) < 2:
+
+        # create seperate dataframes of the 2 signals ... Only 2 signals are supported in the incoming dataframe
+        for i in dataFrame[columnName]:
+            if i == signalName:
+                df1 = df1.append(dataFrame.iloc[[index]])
+                index = index + 1
+            else:
+                df2 = df2.append(dataFrame.iloc[[index]])
+                index = index + 1
+
+        index = 0
+        #joinResult = df1.merge(df2, left_on=df1['time'], right_on=df2['time'], how='left')
+        joinResult = df1.merge(df2, on='time', how='left')
+        #interpolate values
+        interpResult = joinResult.interpolate()
+
+        # X is the signalName and the Left side of our Join as it is longest
+        joinX[columnName] = signalName
+        joinX['time'] = interpResult['time']
+        joinX['value'] = interpResult['value_x']
+        joinX[columnName] = str(signalName)
+
+        #set signal name based on value in the passed list ... Limited... Still needs to be expanded to longer lists...
+        joinY[columnName] = list[0]
+        joinY['time'] = interpResult['time']
+        joinY['value'] = interpResult['value_y']
+        joinY[columnName] = str(list[0])
+
+        for i in joinX['time']:
+            listX.append(joinX.iloc[[index]].values.tolist())
             index = index + 1
 
-    joinResult = df1.merge(df2, left_on=df1['time'], right_on=df2['time'], how='left')
+        index = 0
 
-    joinResult.interpolate()
+        for i in joinY['time']:
+            listY.append(joinY.iloc[[index]].values.tolist())
+            index = index + 1
+
+
+        dictMap[signalName]=listX
+        dictMap[list[0]]=listY
+
+    #TODO Handle larger lists of signals
+    #else:
+
+    #Return result ...
+
+    return dictMap
 
 
 
