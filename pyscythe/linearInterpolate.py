@@ -27,10 +27,13 @@ def interpolate(signalName, list, columnName, dataFrame):
     dictMap = {}
     listAll = [df1, df2, joinY, joinX]
 
+
     #dev prints
     #print('interpolating ..........')
     #print(signalName + ' ,' + str(list) + ' ,' + columnName)
 
+    if signalName in list:
+        list.remove(signalName)
 
     index = 0
 
