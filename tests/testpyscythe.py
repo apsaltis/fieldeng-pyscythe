@@ -3,7 +3,7 @@ import sys
 import pandas as pd
 
 sys.path.append('../')
-from pyscythe.interpolate import interpolate as interp
+from pyscythe.linearInterpolate import interpolate as interp
 #switch to docs/inputDataSample before release so Makefile will work.
 df = pd.read_csv('../docs/inputDataSample', header='infer', sep=',')
 
@@ -14,6 +14,7 @@ print(testResult)
 print(testResult.keys())
 print(testResult.items())
 
+print(testResult['mpg1'][0])
 
 
 
