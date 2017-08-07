@@ -12,10 +12,19 @@
 
 
 import pandas as pd
+import pyspark
+
 
 # takes the name of signal1 and a list of signals to interpolate , the name of the signal columnName and a dataFrame
 
 def interpolate(signalName, list, columnName, dataFrame):
+
+    a = type(dataFrame)
+
+
+    if str(a) == "<class 'pyspark.sql.dataframe.DataFrame'>":
+        dataFrame = dataFrame.toPandas()
+
 
     dataFrame['time'] = pd.to_datetime(dataFrame['time'])
     df1 = pd.DataFrame()

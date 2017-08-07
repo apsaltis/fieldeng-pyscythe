@@ -2,6 +2,13 @@ import argparse
 import sys
 from linearInterpolate import interpolate as interp
 import pandas as pd
+from pyspark.sql import SparkSession
+
+spark = SparkSession \
+    .builder \
+    .appName("Python Spark SQL pyscythe") \
+    .config("spark.pyscythe", "args") \
+    .getOrCreate()
 
 #dev prints
 #print('In first section')
@@ -38,14 +45,14 @@ sys.path.append('../')
 
 #switch to docs/inputDataSample before release so Makefile will work.
 df = pd.read_csv('/Users/vvagias/PycharmProjects/fieldeng-pyscythe/docs/testDataSample', header='infer', sep=',')
-
+df1 = spark.read.csv('/Users/vvagias/PycharmProjects/fieldeng-pyscythe/docs/testDataSample', header='true', inferSchema='true')
 
 signalName = str(dict['signalName'])
 list1 = [dict['list']]
 columnName = str(dict['columnName'])
 
 
-testResult = interp(signalName, list1, columnName, df)
+testResult = interp(signalName, list1, columnName, df1)
 
 #print(testResult)
 #print(testResult.keys())
