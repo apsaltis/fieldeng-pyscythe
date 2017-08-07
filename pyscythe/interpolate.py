@@ -27,6 +27,10 @@ def interpolate(signalName, list, columnName, dataFrame):
     dictMap = {}
     listAll = [df1, df2, joinY, joinX]
 
+    #dev prints
+    #print('interpolating ..........')
+    #print(signalName + ' ,' + str(list) + ' ,' + columnName)
+
 
     index = 0
 
@@ -70,9 +74,19 @@ def interpolate(signalName, list, columnName, dataFrame):
             listY.append(joinY.iloc[[index]].values.tolist())
             index = index + 1
 
-
+        #create map/dictionary of signals and interpolated results.
         dictMap[signalName]=listX
         dictMap[list[0]]=listY
+
+        #dev prints check results debug
+        #print('interpolated......')
+        #print(dictMap)
+
+        #clean up memory
+        listAll.append(joinResult)
+        listAll.append(interpResult)
+        del(df1, df2, dataFrame, joinX, joinY, joinResult, interpResult)
+        del listAll
 
     #TODO Handle larger lists of signals
     #else:
@@ -83,3 +97,6 @@ def interpolate(signalName, list, columnName, dataFrame):
 
 
 
+def interpolateN(signalName, list, columnName, dataFrame):
+
+    print('TODO not yet implemented')
