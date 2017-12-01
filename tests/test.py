@@ -37,6 +37,35 @@ class MyTestCase(unittest.TestCase):
 
         self.assertEqual(expectList, resultList)
 
+
+    def test_interpolation_mil(self):
+        print('Interpolation Test ***** ms ******')
+        print('- - - - - - - - - - - - - - - - - - - - -')
+
+        # switch to docs/inputDataSample before release so Makefile will work.
+        df = pd.read_csv('testDataSample2', header='infer', sep=',')
+        # expected Result is not accurate just a place holder
+        expectList = [2.0, 2.75, 3.5, 4.25, 5.0, 4.0, 3.0, 2.0, 1.0, 1.25, 1.5, 1.75, 2.0]
+        list = ['sig1Raw', 'sig2Raw']
+        testResult = interp('sig1Raw', list, 'function', df)
+
+        print(testResult)
+
+        index = 0
+        resultList = []
+
+        for i in testResult['sig2Raw']:
+            resultList.append(testResult['sig2Raw'][index][0][2])
+            index = index + 1
+
+        print(resultList)
+        print('==')
+        print(expectList)
+        print(resultList == expectList)
+
+        self.assertEqual(expectList, resultList)
+
+
     def test_spark_data_frame(self):
         spark = SparkSession \
             .builder \
@@ -66,6 +95,7 @@ class MyTestCase(unittest.TestCase):
 
 
         self.assertEqual(expectList, resultList)
+
 
 
     def test_pattern_match(self):
