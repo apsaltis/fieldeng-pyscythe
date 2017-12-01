@@ -1,12 +1,9 @@
 # fieldeng-pyscythe
 
-# Example Calling Scala Function:
+test.py will use testDataSample to execute interpolation tests.
 
-from py4j.java_gateway import java_import
-jvm = sc._gateway.jvm
-java_import(jvm, "com.hortonworks.scythe.LinearInterpolation.pyTest")
-a = sc._jvm.com.hortonworks.scythe.LinearInterpolation()
-a.pyTest()
+testSig1, testSig2, testSig3 are example inputs.
+
 
 
 
