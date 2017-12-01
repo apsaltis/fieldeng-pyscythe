@@ -1,13 +1,14 @@
+'''
+ _______           _______  _______          _________          _______
+(  ____ )|\     /|(  ____ \(  ____ \|\     /|\__   __/|\     /|(  ____ \
+| (    )|( \   / )| (    \/| (    \/( \   / )   ) (   | )   ( || (    \/
+| (____)| \ (_) / | (_____ | |       \ (_) /    | |   | (___) || (__
+|  _____)  \   /  (_____  )| |        \   /     | |   |  ___  ||  __)
+| (         ) (         ) || |         ) (      | |   | (   ) || (
+| )         | |   /\____) || (____/\   | |      | |   | )   ( || (____/\
+|/          \_/   \_______)(_______/   \_/      )_(   |/     \|(_______/
 
-# _______           _______  _______          _________          _______
-#(  ____ )|\     /|(  ____ \(  ____ \|\     /|\__   __/|\     /|(  ____ \
-#| (    )|( \   / )| (    \/| (    \/( \   / )   ) (   | )   ( || (    \/
-#| (____)| \ (_) / | (_____ | |       \ (_) /    | |   | (___) || (__
-#|  _____)  \   /  (_____  )| |        \   /     | |   |  ___  ||  __)
-#| (         ) (         ) || |         ) (      | |   | (   ) || (
-#| )         | |   /\____) || (____/\   | |      | |   | )   ( || (____/\
-#|/          \_/   \_______)(_______/   \_/      )_(   |/     \|(_______/
-#
+'''
 
 
 
@@ -18,6 +19,17 @@ import pyspark
 # takes the name of signal1 and a list of signals to interpolate , the name of the signal columnName and a dataFrame
 
 def interpolate(signalName, list, columnName, dataFrame):
+    print(
+        '''
+         _______           _______  _______          _________          _______
+        (  ____ )|\     /|(  ____ \(  ____ \|\     /|\__   __/|\     /|(  ____ |
+        | (    )|( \   / )| (    \/| (    \/( \   / )   ) (   | )   ( || (    \/
+        | (____)| \ (_) / | (_____ | |       \ (_) /    | |   | (___) || (__
+        |  _____)  \   /  (_____  )| |        \   /     | |   |  ___  ||  __)
+        | (         ) (         ) || |         ) (      | |   | (   ) || (
+        | )         | |   /\____) || (____/\   | |      | |   | )   ( || (____/|
+        |/          \_/   \_______)(_______/   \_/      )_(   |/     \|(_______/
+        ''')
 
     a = type(dataFrame)
 
@@ -99,6 +111,15 @@ def interpolate(signalName, list, columnName, dataFrame):
         listAll.append(interpResult)
         del(df1, df2, dataFrame, joinX, joinY, joinResult, interpResult)
         del listAll
+        print("------------------------------------_DEV_---------------------------------------")
+        print(dictMap)
+        for i in dictMap:
+            print(dictMap[i])
+            dictMapStr = dictMap[i]
+            tempCounter = 0
+            for j in dictMapStr:
+                print(dictMapStr[tempCounter])
+                tempCounter=tempCounter+1
 
     #TODO Handle larger lists of signals
     #else:
@@ -108,6 +129,10 @@ def interpolate(signalName, list, columnName, dataFrame):
     return dictMap
 
 
+
+def interpolateN(signalName, list, columnName, dataFrame):
+
+    print('TODO not yet implemented')
 
 def interpolateN(signalName, list, columnName, dataFrame):
 
